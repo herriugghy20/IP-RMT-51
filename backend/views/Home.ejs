@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GShop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .input-group {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 70%;
+        }
+
+        .input-group button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 30%;
+        }
+
+        .row-cols-3 {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .col {
+            flex: 0 0 calc(33.33% - 20px);
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .col:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .category-card:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-link {
+            display: block;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .card-body {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .category-image {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .card-title {
+            margin-bottom: 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/gshop/user-profile/" class="btn">Profile</a>
+                <a href="/gshop/orders/" class="btn">Orders</a>
+                <br><br>
+                <form action="" class="input-group">
+                    <input type="text" class="form-control" name="keyword" id="keyword"
+                        placeholder="Masukkan kata kunci">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row row-cols-3">
+            <% categories.forEach((category, i)=> { %>
+                <div class="col category-card">
+                    <a href="/gshop/category/<%= category.id %>" class="category-link">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="../images/<%= ++i %>.jpg" alt="<%= category.name %>" class="category-image">
+                                <h5 class="card-title">
+                                    <%= category.name %>
+                                </h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+
+</html>

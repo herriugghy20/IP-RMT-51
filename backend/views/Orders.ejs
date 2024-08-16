@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .btn-primary {
+        margin: 150px;
+        text-decoration: none;
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+</style>
+
+<body>
+
+    <% if (!empty) { %>
+
+        <h1>Here are your orders, <%= orders.username %>
+        </h1>
+        <table border="1">
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Order Date</th>
+                <th>Status</th>
+            </tr>
+            <% orders.Orders.forEach(e=> { %>
+
+                <tr>
+                    <td>
+                        <%= e.Product.productName %>
+                    </td>
+                    <td>
+                        <%= e.quantity %>
+                    </td>
+                    <td>
+                        <%=convertCurrency(e.totalPrice) %>
+                    </td>
+                    <td>
+                        <%= e.formatOrderDate %>
+                    </td>
+                    <td>
+                        <%= e.statusOrder %>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+
+        <p>
+            <%=convertCurrency(subtotal) %>
+        </p>
+
+        <a href="/gshop/orders/generateInvoice"><button>Pay Now</button></a>
+        </form>
+
+        <% } else {%>
+            <h1>
+                <%= empty %>
+            </h1>
+            <% }%>
+                <a href="/gshop" class="btn btn-primary">Back to Home</a>
+                <a href="/gshop/orders/" class="btn btn-primary">Rerfresh</a>
+</body>
+
+</html>
